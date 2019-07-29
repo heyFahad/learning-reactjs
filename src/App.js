@@ -46,6 +46,25 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let personsData = null;
+
+    if (this.state.showPersons) {
+      personsData = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            nameChanged={this.nameChangedHandler} />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            clickEventHandler={this.switchNamesAndAgesHandler}>
+            My hobby is: CRICKET
+          </Person>
+        </div>
+      );
+    }
+
     // console.log(this.state);
     return (
       <div className="App">
@@ -56,20 +75,7 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>
           {this.state.showPersons ? "Hide Persons" : "Show Persons"}
         </button>
-        {this.state.showPersons ?
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              nameChanged={this.nameChangedHandler} />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              clickEventHandler={this.switchNamesAndAgesHandler}>
-              My hobby is: CRICKET
-          </Person>
-          </div> : null
-        }
+        {personsData}
       </div>
     );
   }
