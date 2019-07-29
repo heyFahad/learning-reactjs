@@ -22,15 +22,42 @@ class App extends Component {
     });
   }
 
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: event.target.value, age: this.state.persons[0].age },
+        { name: this.state.persons[1].name, age: this.state.persons[1].age }
+      ]
+    });
+  }
+
   render() {
+    const buttonStyle = {
+      backgroundColor: 'deepskyblue',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     // console.log(this.state);
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working</p>
-        <button onClick={this.switchNamesAndAgesHandler}>Switch Names and Ages</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>
+        <button
+          style={buttonStyle}
+          onClick={this.switchNamesAndAgesHandler}>
+          Switch Names and Ages
+        </button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          nameChanged={this.nameChangedHandler} />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          clickEventHandler={this.switchNamesAndAgesHandler}>
           My hobby is: CRICKET
         </Person>
       </div>
