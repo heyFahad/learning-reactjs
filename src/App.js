@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
+import { StyleRoot } from 'radium';
 import './App.css';
 
 // A Class-based Component (App)
@@ -30,7 +31,7 @@ class App extends Component {
     });
 
     // Then, fetch the actual person object by using the 'Spread' operator (as we don't want to mutate the state)
-    const updatedPerson = {...this.state.persons[personIndex]};
+    const updatedPerson = { ...this.state.persons[personIndex] };
 
     // Update the person's name in this separate Person object and then reflect that change in a separate personsArray
     updatedPerson.name = event.target.value;
@@ -50,7 +51,7 @@ class App extends Component {
     personsArray.splice(personIndex, 1);
 
     // update the actual state to re-render the DOM
-    this.setState({persons: personsArray});
+    this.setState({ persons: personsArray });
   }
 
   togglePersonsHandler = () => {
@@ -62,6 +63,7 @@ class App extends Component {
     const buttonStyle = {
       display: 'inline',
       backgroundColor: 'deepskyblue',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -78,11 +80,11 @@ class App extends Component {
             this.state.persons.map((person, index) => {
               return (
                 <Person
-                key = {person.id}
-                name = {person.name}
-                age = {person.age}
-                clickEventHandler = {this.deletePersonHandler.bind(this, index)}
-                nameChanged = {(event) => this.nameChangedHandler(event, person.id)} />
+                  key={person.id}
+                  name={person.name}
+                  age={person.age}
+                  clickEventHandler={this.deletePersonHandler.bind(this, index)}
+                  nameChanged={(event) => this.nameChangedHandler(event, person.id)} />
               );
             })
           }
@@ -92,21 +94,23 @@ class App extends Component {
 
     // console.log(this.state);
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working</p>
-        <button
-          style = {buttonStyle}
-          onClick = {this.switchPersonsHandler}>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App</h1>
+          <p>This is really working</p>
+          <button
+            style={buttonStyle}
+            onClick={this.switchPersonsHandler}>
             Switch Persons
         </button>
-        <button
-          style={buttonStyle}
-          onClick={this.togglePersonsHandler}>
+          <button
+            style={buttonStyle}
+            onClick={this.togglePersonsHandler}>
             {this.state.showPersons ? "Hide Persons" : "Show Persons"}
-        </button>
-        {personsData}
-      </div>
+          </button>
+          {personsData}
+        </div>
+      </StyleRoot>
     );
   }
 }
