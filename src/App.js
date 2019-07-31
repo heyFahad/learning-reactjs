@@ -5,11 +5,11 @@ import './App.css';
 // A Class-based Component (App)
 class App extends Component {
   state = {
-    persons: [
-      { id: "FA15-BSE-145", name: "Fahad Javed", age: 23 },
-      { id: "FA15-BSE-058", name: "Muhammad Bilal", age: 22 }
-    ],
-    showPersons: false
+    userInput: ""
+  }
+
+  inputChangedHandler = (event) => {
+    this.setState({userInput: event.target.value});
   }
 
   switchPersonsHandler = () => {
@@ -59,6 +59,15 @@ class App extends Component {
   }
 
   render() {
+    return (
+      <div>
+        <input type="text" onChange={this.inputChangedHandler}/>
+        <p>Length of the entered input is: {this.state.userInput.length}</p>
+      </div>
+    );
+  }
+
+  /* render() {
     const buttonStyle = {
       display: 'inline',
       backgroundColor: 'deepskyblue',
@@ -108,7 +117,7 @@ class App extends Component {
         {personsData}
       </div>
     );
-  }
+  } */
 }
 
 export default App;
