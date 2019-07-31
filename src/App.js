@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import './App.css';
+import classes from './App.css';
 
 // A Class-based Component (App)
 class App extends Component {
@@ -93,7 +93,7 @@ class App extends Component {
 
     // console.log(this.state);
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
         <p>This is really working</p>
         <button
