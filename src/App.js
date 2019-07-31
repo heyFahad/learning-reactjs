@@ -51,7 +51,18 @@ class App extends Component {
     if (this.state.showPersons) {
       personsData = (
         <div>
-          <Person
+          {
+            this.state.persons.map((person) => {
+              return (
+                <Person
+                name = {person.name}
+                age = {person.age}
+                clickEventHandler = {this.switchNamesAndAgesHandler}
+                nameChanged = {this.nameChangedHandler} />
+              );
+            })
+          }
+          {/* <Person
             name={this.state.persons[0].name}
             age={this.state.persons[0].age}
             nameChanged={this.nameChangedHandler} />
@@ -60,7 +71,7 @@ class App extends Component {
             age={this.state.persons[1].age}
             clickEventHandler={this.switchNamesAndAgesHandler}>
             My hobby is: CRICKET
-          </Person>
+          </Person> */}
         </div>
       );
     }
