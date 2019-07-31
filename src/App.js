@@ -59,17 +59,6 @@ class App extends Component {
   }
 
   render() {
-    const buttonStyle = {
-      display: 'inline',
-      backgroundColor: 'deepskyblue',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      margin: 'auto 16px'
-    };
-
     let personsData = null;
 
     if (this.state.showPersons) {
@@ -97,12 +86,10 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p>This is really working</p>
         <button
-          style={buttonStyle}
           onClick={this.switchPersonsHandler}>
           Switch Persons
         </button>
         <button
-          style={buttonStyle}
           onClick={this.togglePersonsHandler}>
           {this.state.showPersons ? "Hide Persons" : "Show Persons"}
         </button>
