@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import { StyleRoot } from 'radium';
 import './App.css';
 
 // A Class-based Component (App)
@@ -94,23 +93,21 @@ class App extends Component {
 
     // console.log(this.state);
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>Hi, I'm a React App</h1>
-          <p>This is really working</p>
-          <button
-            style={buttonStyle}
-            onClick={this.switchPersonsHandler}>
-            Switch Persons
-          </button>
-          <button
-            style={buttonStyle}
-            onClick={this.togglePersonsHandler}>
-            {this.state.showPersons ? "Hide Persons" : "Show Persons"}
-          </button>
-          {personsData}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working</p>
+        <button
+          style={buttonStyle}
+          onClick={this.switchPersonsHandler}>
+          Switch Persons
+        </button>
+        <button
+          style={buttonStyle}
+          onClick={this.togglePersonsHandler}>
+          {this.state.showPersons ? "Hide Persons" : "Show Persons"}
+        </button>
+        {personsData}
+      </div>
     );
   }
 }
