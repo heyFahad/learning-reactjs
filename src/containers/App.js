@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Person from '../components/Persons/Person/Person';
+import Cockpit from '../components/Cockpit/Cockpit';
+import PersonsList from '../components/Persons/Persons';
 import classes from './App.css';
 
 // A Class-based Component (App)
 class App extends Component {
   state = {
     persons: [
-      { id: "FA15-BSE-145", name: "Fahad Javed", age: 23 },
-      { id: "FA15-BSE-058", name: "Muhammad Bilal", age: 22 }
+      { id: "FA15-BSE-058", name: "Muhammad Bilal", age: 21 },
+      { id: "FA15-BSE-138", name: "Nazar Abbas", age: 22 },
+      { id: "FA15-BSE-145", name: "Fahad Javed", age: 23 }
     ],
     showPersons: false
   }
@@ -17,8 +19,9 @@ class App extends Component {
     // DON'T DO LIKE THIS: this.state.persons[0].name = "Bunty";
     this.setState({
       persons: [
-        { id: this.state.persons[1].id, name: this.state.persons[1].name, age: this.state.persons[1].age },
-        { id: this.state.persons[0].id, name: this.state.persons[0].name, age: this.state.persons[0].age }
+        { id: this.state.persons[2].id, name: this.state.persons[2].name, age: this.state.persons[2].age },
+        { id: this.state.persons[0].id, name: this.state.persons[0].name, age: this.state.persons[0].age },
+        { id: this.state.persons[1].id, name: this.state.persons[1].name, age: this.state.persons[1].age }
       ]
     });
   }
@@ -62,37 +65,19 @@ class App extends Component {
     let personsData = null;
 
     if (this.state.showPersons) {
-      personsData = (
-        <div>
-          {
-            this.state.persons.map((person, index) => {
-              return (
-                <Person
-                  key={person.id}
-                  name={person.name}
-                  age={person.age}
-                  clickEventHandler={this.deletePersonHandler.bind(this, index)}
-                  nameChanged={(event) => this.nameChangedHandler(event, person.id)} />
-              );
-            })
-          }
-        </div>
-      );
+      personsData = <PersonsList
+        personsArray={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangedHandler} />
     }
 
-    // console.log(this.state);
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working</p>
-        <button
-          onClick={this.switchPersonsHandler}>
-          Switch Persons
-        </button>
-        <button
-          onClick={this.togglePersonsHandler}>
-          {this.state.showPersons ? "Hide Persons" : "Show Persons"}
-        </button>
+        <Cockpit
+          personsArray={this.state.persons}
+          showPersons={this.state.showPersons}
+          switchPersons={this.switchPersonsHandler}
+          togglePersons={this.togglePersonsHandler} />
         {personsData}
       </div>
     );
