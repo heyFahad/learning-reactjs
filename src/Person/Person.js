@@ -2,6 +2,12 @@ import React from 'react';
 import classes from './Person.css';
 
 const person = (props) => {
+    // Let's construct an example error in our this component, just to demostrate the use of Error Boundaries (a new feature added in React 16+) in React applications
+    const random = Math.random();
+    if (random >= 0.75) {
+        throw new Error("Some went wrong!");
+    }
+
     return (
         <div className={classes.Person}>
             <p onClick={props.clickEventHandler}>
