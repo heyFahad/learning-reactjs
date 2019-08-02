@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Person from './Person/Person';
 
-const persons = (props) => {
-    console.log('[Persons.js] is rendering now.');
-    return (
-        <div>
-            {
-                props.personsArray.map((person, index) => {
-                    return (
-                        <Person
-                            key={person.id}
-                            name={person.name}
-                            age={person.age}
-                            clickEventHandler={() => props.clicked(index)}
-                            nameChanged={(event) => props.changed(event, person.id)} />
-                    );
-                })
-            }
-        </div>
-    );
+class Persons extends Component {
+    static getDerivedStateFromProps(props, state) {
+        console.log('[Persons.js] is in getDerivedStateFromProps(props, state) Lifecycle Hook. ', props);
+        return state;   // should return the updated state from this Lifecycle Hook (Lifecycle Method).
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[Persons.js] is in shouldComponentUpdate(nextProps, nextState) hook.');
+        return true;
+    }
+
+    render() {
+        console.log('[Persons.js] is rendering now.');
+        return (
+            <div>
+                {
+                    this.props.personsArray.map((person, index) => {
+                        return (
+                            <Person
+                                key={person.id}
+                                name={person.name}
+                                age={person.age}
+                                clickEventHandler={() => this.props.clicked(index)}
+                                nameChanged={(event) => this.props.changed(event, person.id)} />
+                        );
+                    })
+                }
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        console.log('[Persons.js] is in componentDidMount() method now.');
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('[Persons.js] is in getSnapshotBeforeUpdate(prevProps, prevState) hook now.');
+        return {message: 'Snapshot before update'}
+        // return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('[Persons.js] is in componentDidUpdate() hook now.');
+        console.log(snapshot);
+    }
 }
 
-export default persons;
+export default Persons;
