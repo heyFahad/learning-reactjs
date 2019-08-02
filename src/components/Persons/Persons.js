@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
-    static getDerivedStateFromProps(props, state) {
-        console.log('[Persons.js] is in getDerivedStateFromProps(props, state) Lifecycle Hook. ', props);
-        return state;   // should return the updated state from this Lifecycle Hook (Lifecycle Method).
-    }
+    // static getDerivedStateFromProps(props, state) {
+    //     console.log('[Persons.js] is in getDerivedStateFromProps(props, state) Lifecycle Hook. ', props);
+    //     return state;   // should return the updated state from this Lifecycle Hook (Lifecycle Method).
+    // }
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] is in shouldComponentUpdate(nextProps, nextState) hook.');

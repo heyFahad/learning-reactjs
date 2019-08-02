@@ -22,6 +22,11 @@ class App extends Component {
     return state;   // should return the updated state from this Lifecycle Hook (Lifecycle Method).
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+      console.log('[App.js] is in shouldComponentUpdate(nextProps, nextState) hook.');
+      return true;
+  }
+
   switchPersonsHandler = () => {
     this.setState({
       persons: [
@@ -94,6 +99,10 @@ class App extends Component {
   componentDidMount() {
     console.log('[App.js] is in componentDidMount() method now.');
   }
+
+  componentDidUpdate() {
+    console.log('[App.js] is in componentDidUpdate() hook now.');
+}
 }
 
 export default App;
