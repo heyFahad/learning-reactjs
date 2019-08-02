@@ -18,10 +18,6 @@ const Cockpit = (props) => {
         }
     }, []);
 
-    useEffect(() => {
-
-    });
-
     const assignedClasses = [];
     if (props.personsArray.length <= 2) {
         assignedClasses.push(classes.red);  // classes = ['red'];
