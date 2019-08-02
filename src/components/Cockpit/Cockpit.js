@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
-const cockpit = (props) => {
-    console.log('[Cockpit.js] is now rendering!');
+const Cockpit = (props) => {
+    useEffect(() => {
+        // useEffect() runs for every (component) update and it runs after rendering the component.
+        // Thus, we can do all the things that we'd be doing in componentDidMount() or componentDidUpdate() hooks of the class-based components, e.g. send an HTTP request or like that here in this method.
+        console.log('[Cockpit.js] is in useEffect()');
+    });
+
     const assignedClasses = [];
     if (props.personsArray.length <= 2) {
         assignedClasses.push(classes.red);  // classes = ['red'];
@@ -33,4 +38,4 @@ const cockpit = (props) => {
     );
 }
 
-export default cockpit;
+export default Cockpit;
