@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
+    console.log('[Cockpit.js] is now rendering!');
     const assignedClasses = [];
     if (props.personsArray.length <= 2) {
         assignedClasses.push(classes.red);  // classes = ['red'];

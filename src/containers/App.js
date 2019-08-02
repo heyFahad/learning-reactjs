@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import Cockpit from '../components/Cockpit/Cockpit';
-import PersonsList from '../components/Persons/Persons';
+import Persons from '../components/Persons/Persons';
 import classes from './App.css';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: "FA15-BSE-058", name: "Muhammad Bilal", age: 21 },
-      { id: "FA15-BSE-138", name: "Nazar Abbas", age: 22 },
-      { id: "FA15-BSE-145", name: "Fahad Javed", age: 23 }
-    ],
-    showPersons: false
+  constructor(props) {
+    super(props);
+    console.log('[App.js] is in constructor(props) right now.');
+    this.state = {
+      persons: [
+        { id: "FA15-BSE-058", name: "Muhammad Bilal", age: 21 },
+        { id: "FA15-BSE-138", name: "Nazar Abbas", age: 22 },
+        { id: "FA15-BSE-145", name: "Fahad Javed", age: 23 }
+      ],
+      showPersons: false
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] is in getDerivedStateFromProps(props, state) Lifecycle Hook. ', props);
+    return state;   // should return the updated state from this Lifecycle Hook (Lifecycle Method).
   }
 
   switchPersonsHandler = () => {
@@ -59,10 +68,11 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] is in render() method now.');
     let personsData = null;
 
     if (this.state.showPersons) {
-      personsData = <PersonsList
+      personsData = <Persons
         personsArray={this.state.persons}
         clicked={this.deletePersonHandler}
         changed={this.nameChangedHandler} />
@@ -79,6 +89,10 @@ class App extends Component {
         {personsData}
       </div>
     );
+  }
+
+  componentDidMount() {
+    console.log('[App.js] is in componentDidMount() method now.');
   }
 }
 
