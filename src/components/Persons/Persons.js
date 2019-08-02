@@ -9,7 +9,7 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] is in shouldComponentUpdate(nextProps, nextState) hook.');
-        return true;
+        return nextProps.personsArray !== this.props.personsArray;
     }
 
     render() {
@@ -45,6 +45,10 @@ class Persons extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[Persons.js] is in componentDidUpdate() hook now.');
         console.log(snapshot);
+    }
+
+    componentWillUnmount() {
+        console.log('[Persons.js] is in componentWillUnmount() hook now.');
     }
 }
 

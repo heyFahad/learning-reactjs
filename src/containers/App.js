@@ -13,7 +13,8 @@ class App extends Component {
         { id: "FA15-BSE-138", name: "Nazar Abbas", age: 22 },
         { id: "FA15-BSE-145", name: "Fahad Javed", age: 23 }
       ],
-      showPersons: false
+      showPersons: false,
+      showCockpit: true
     }
   }
 
@@ -23,8 +24,8 @@ class App extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-      console.log('[App.js] is in shouldComponentUpdate(nextProps, nextState) hook.');
-      return true;
+    console.log('[App.js] is in shouldComponentUpdate(nextProps, nextState) hook.');
+    return true;
   }
 
   switchPersonsHandler = () => {
@@ -85,12 +86,23 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          personsArray={this.state.persons}
-          showPersons={this.state.showPersons}
-          switchPersons={this.switchPersonsHandler}
-          togglePersons={this.togglePersonsHandler} />
+        <button
+          onClick={
+            () => {
+              this.setState({ showCockpit: !this.state.showCockpit })
+            }
+          }
+        >
+          Toggle Cockpit
+        </button>
+        {this.state.showCockpit ?
+          <Cockpit
+            title={this.props.appTitle}
+            personsArray={this.state.persons}
+            showPersons={this.state.showPersons}
+            switchPersons={this.switchPersonsHandler}
+            togglePersons={this.togglePersonsHandler} /> : null
+        }
         {personsData}
       </div>
     );
@@ -102,7 +114,7 @@ class App extends Component {
 
   componentDidUpdate() {
     console.log('[App.js] is in componentDidUpdate() hook now.');
-}
+  }
 }
 
 export default App;
