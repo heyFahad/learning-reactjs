@@ -3,7 +3,6 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import PersonsList from '../components/Persons/Persons';
 import classes from './App.css';
 
-// A Class-based Component (App)
 class App extends Component {
   state = {
     persons: [
@@ -15,8 +14,6 @@ class App extends Component {
   }
 
   switchPersonsHandler = () => {
-    // console.log("Was clicked!");
-    // DON'T DO LIKE THIS: this.state.persons[0].name = "Bunty";
     this.setState({
       persons: [
         { id: this.state.persons[2].id, name: this.state.persons[2].name, age: this.state.persons[2].age },
@@ -74,6 +71,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={this.props.appTitle}
           personsArray={this.state.persons}
           showPersons={this.state.showPersons}
           switchPersons={this.switchPersonsHandler}
