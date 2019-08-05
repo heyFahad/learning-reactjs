@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import classes from './Person.css';
 
 class Person extends Component {
+    constructor(props) {
+        super(props);
+        this.InputElementRef = React.createRef();
+    }
+
     render() {
         console.log('[Person.js] is rendering...');
         return (
@@ -12,11 +17,7 @@ class Person extends Component {
                 </p>
                 <p>{this.props.children}</p>
                 <input
-                    ref={
-                        (referencedElement) => {
-                            this.inputElement = referencedElement;
-                        }
-                    }
+                    ref={this.InputElementRef}
                     type="text"
                     onChange={this.props.nameChanged}
                     value={this.props.name} />
@@ -25,7 +26,7 @@ class Person extends Component {
     }
 
     componentDidMount() {
-        this.inputElement.focus();
+        this.InputElementRef.current.focus();
     }
 }
 
