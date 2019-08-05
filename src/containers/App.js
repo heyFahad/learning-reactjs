@@ -89,7 +89,9 @@ class App extends Component {
         <button
           onClick={
             () => {
-              this.setState({ showCockpit: !this.state.showCockpit })
+              this.setState((prevState, currentProps) => {
+                showCockpit: !prevState.showCockpit
+              })
             }
           }
         >
