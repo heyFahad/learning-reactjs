@@ -11,9 +11,21 @@ class Person extends Component {
                     This is <span id="person_name" className={classes.dynamicContent}>{this.props.name}</span> here, and I'm <span id="person_age" className={classes.dynamicContent}>{this.props.age}</span> years old!
                 </p>
                 <p>{this.props.children}</p>
-                <input type="text" onChange={this.props.nameChanged} value={this.props.name} />
+                <input
+                    ref={
+                        (referencedElement) => {
+                            this.inputElement = referencedElement;
+                        }
+                    }
+                    type="text"
+                    onChange={this.props.nameChanged}
+                    value={this.props.name} />
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.inputElement.focus();
     }
 }
 
