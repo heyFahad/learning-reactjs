@@ -90,8 +90,10 @@ class App extends Component {
           onClick={
             () => {
               this.setState((prevState, currentProps) => {
-                showCockpit: !prevState.showCockpit
-              })
+                return {
+                  showCockpit: !prevState.showCockpit
+                };
+              });
             }
           }
         >
