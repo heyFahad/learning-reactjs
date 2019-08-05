@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 const Cockpit = (props) => {
+    const toggleButtonRef = useRef(null);
+
     useEffect(() => {
         console.log('[Cockpit.js] is in useEffect()');
         // useEffect() runs for every (component) update and it runs after rendering the component.
         // Thus, we can do all the things that we'd be doing in componentDidMount() or componentDidUpdate() hooks of the class-based components, e.g. send an HTTP request or like that here in this method.
 
         // Example HTTP request (though it isn't actually)
-        const timer = setTimeout(() => {
-            alert('Saved data to the cloud!');
-        }, 1000)
+        // const timer = setTimeout(() => {
+        //     alert('Saved data to the cloud!');
+        // }, 1000)
+
+        toggleButtonRef.current.click();
 
         return () => {
             // console.log('[Cockpit.js] is doing cleanup work in useEffect() hook.');
-            clearTimeout(timer);
+            // clearTimeout(timer);
         }
     }, []);
 
@@ -40,6 +44,7 @@ const Cockpit = (props) => {
                 Switch Persons
             </button>
             <button
+                ref={toggleButtonRef}
                 className={btnClass}
                 onClick={props.togglePersons}>
                 {props.showPersons ? "Hide Persons" : "Show Persons"}
